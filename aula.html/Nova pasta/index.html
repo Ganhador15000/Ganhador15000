@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Minha Galeria de Fotos e Calculadora</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="clock" id="clock">00:00:00</div>
+    
+    <div class="login" id="login">
+        <h2>Login</h2>
+        <input type="text" id="username" placeholder="Usuário">
+        <input type="password" id="password" placeholder="Senha">
+        <button onclick="login()">Entrar</button>
+    </div>
+
+    <div class="gallery" id="gallery">
+        <h2>O melhor do mundo</h2>
+        <img src="https://upload.wikimedia.org/wikipedia/commons/8/8c/Cristiano_Ronaldo_2018.jpg" alt="Cristiano Ronaldo">
+        <div class="calculator">
+            <input type="text" id="calc-display" disabled>
+            <button onclick="appendNumber('1')">1</button>
+            <button onclick="appendNumber('2')">2</button>
+            <button onclick="appendNumber('3')">3</button>
+            <button onclick="setOperation('+')">+</button>
+            <button onclick="appendNumber('4')">4</button>
+            <button onclick="appendNumber('5')">5</button>
+            <button onclick="appendNumber('6')">6</button>
+            <button onclick="setOperation('-')">-</button>
+            <button onclick="appendNumber('7')">7</button>
+            <button onclick="appendNumber('8')">8</button>
+            <button onclick="appendNumber('9')">9</button>
+            <button onclick="setOperation('*')">*</button>
+            <button onclick="appendNumber('0')">0</button>
+            <button onclick="calculate()">=</button>
+            <button onclick="clearDisplay()">C</button>
+            <button onclick="setOperation('/')">/</button>
+        </div>
+    </div>
+
+    <script>
+        function updateClock() {
+            const now = new Date();
+            const hours = String(now.getHours()).padStart(2, '0');
+            const minutes = String(now.getMinutes()).padStart(2, '0');
+            const seconds = String(now.getSeconds()).padStart(2, '0');
+            document.getElementById('clock').textContent = `${hours}:${minutes}:${seconds}`;
+        }
+
+        function login() {
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            
+            // Verificação simples de login (substitua com sua lógica de autenticação)
+            if (username === 'usuario' && password === 'senha') {
+                document.getElementById('login').style.display = 'none';
+                document.getElementById('gallery').style.display = 'flex';
+            } else {
+                alert('Credenciais inválidas!');
+            }
+        }
+
+        let currentOperation = null;
+        let firstOperand = '';
+        let secondOperand = '';
+
+        function appendNumber(number) {
+            const display = document.getElementById('calc-display');
+            if (currentOperation === null) {
+                firstOperand += number;
+                display.value = firstOperand;
+            } else {
+                secondOperand += number;
+                display.value = secondOperand;
+            }
+        }
+
+        function setOperation(operation) {
+            if (currentOperation !== null) {
+                calculate();
+            }
+            currentOperation = operation;
+        }
+
+        function calculate() {
+            let result;
+            const first = parseFloat(firstOperand);
+            const second = parseFloat(secondOperand);
+            switch (currentOperation) {
+                case '+':
+                    result = first + second;
+                    break;
+                case '-':
+                    result = first - second;
+                    break;
+                case '*':
+                    result = first * second;
+                    break;
+                case '/':
+                    result = first / second;
+                    break;
+            }
+            document.getElementById('calc-display').value = result;
+            firstOperand = result.toString();
+            secondOperand = '';
+            currentOperation = null;
+        }
+
+        function clearDisplay() {
+            firstOperand = '';
+            secondOperand = '';
+            currentOperation = null;
+            document.getElementById('calc-display').value = '';
+        }
+
+        setInterval(updateClock, 1000);
+        updateClock();
+    </script>
+</body>
+</html>
+
+

@@ -1,0 +1,130 @@
+/* CSS principal para estilização do site */
+
+/* Estilo para o corpo da página */
+body {
+    background-color: black; /* Fundo preto */
+    color: green; /* Texto verde */
+    font-family: Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    padding: 20px;
+    position: relative;
+}
+
+/* Estilo para o relógio */
+.clock {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    color: green;
+    font-size: 1.5rem;
+    font-family: Arial, sans-serif;
+    background-color: rgba(0, 0, 0, 0.5); /* Fundo semi-transparente */
+    padding: 10px;
+    border-radius: 5px;
+    border: 2px solid green;
+}
+
+/* Estilo para a área de login */
+.login {
+    position: absolute;
+    top: 50px;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: rgba(0, 0, 0, 0.8); /* Fundo semi-transparente */
+    padding: 20px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 2px solid green;
+}
+
+.login input {
+    margin: 10px 0;
+    padding: 10px;
+    border: 1px solid green;
+    border-radius: 5px;
+    background: #444;
+    color: #fff;
+}
+
+.login button {
+    padding: 10px 20px;
+    border: 1px solid green;
+    border-radius: 5px;
+    background: green;
+    color: #fff;
+    cursor: pointer;
+}
+
+.login button:hover {
+    background: darkgreen;
+}
+
+/* Estilo para a galeria */
+.gallery {
+    display: none; /* Ocultar galeria até o login ser realizado */
+    flex-direction: column;
+    align-items: center;
+}
+
+.gallery img {
+    width: 200px;
+    height: 200px;
+    object-fit: cover;
+    border: 2px solid #fff;
+    border-radius: 10px;
+    transition: transform 0.3s, box-shadow 0.3s;
+    margin-bottom: 20px;
+}
+
+.gallery img:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.6);
+}
+
+.gallery h2 {
+    margin: 0;
+    margin-bottom: 10px;
+    font-size: 1.5rem;
+    color: green;
+}
+
+/* Estilo para a calculadora */
+.calculator {
+    display: grid;
+    grid-template-columns: repeat(4, 50px);
+    gap: 10px;
+}
+
+.calculator button {
+    width: 50px;
+    height: 50px;
+    font-size: 1.5rem;
+    background-color: #444;
+    color: #fff;
+    border: 2px solid green;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.calculator button:hover {
+    background-color: #555;
+}
+
+.calculator input {
+    grid-column: span 4;
+    height: 50px;
+    font-size: 1.5rem;
+    text-align: right;
+    padding: 0 10px;
+    border: 2px solid green;
+    border-radius: 5px;
+    background-color: #333;
+    color: #fff;
+}
